@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Application {
 	UserInterface userInterface = new UserInterface();
 	SweetStore sweetStore = new SweetStore();
+	final static int EXIT_VALUE = 5;
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Sweet Shop.");
@@ -20,7 +21,7 @@ public class Application {
 		 */
 		int input = 0;
 		Application app = new Application();
-		while (input != 5) {
+		while (input != app.EXIT_VALUE) {
 			input = app.userInterface.showUserMenu();
 			app.handleUserSelection(input);
 		}
@@ -28,6 +29,8 @@ public class Application {
 
 	private void handleUserSelection(int input) {
 		Scanner sc = new Scanner(System.in);
+		Application app = new Application();
+
 		switch (input) {
 		case 1:
 			Laddu laddu = new Laddu();
@@ -35,10 +38,13 @@ public class Application {
 			Barfi barfi = new Barfi();
 			Jalebi jalebi = new Jalebi();
 			Rasgulla rasgulla = new Rasgulla();
+			Rasgulla rasgulla2 = new Rasgulla();
+			
 			sweetStore.add(jalebi);
 			sweetStore.add(laddu);
 			sweetStore.add(barfi);
 			sweetStore.add(rasgulla);
+			sweetStore.add(rasgulla2);
 			break;
 		case 2:
 			System.out.println("Enter the name you want to delete");
@@ -47,18 +53,19 @@ public class Application {
 			Sweet name = sweetStore.getSweet(sweetName);
 			sweetStore.removeSweet(name);
 			break;
-		case 3:
-			System.out.println("Enter the name you want to update");
-			sweetName = sc.next();
-			name =sweetStore.getSweet(sweetName);
-			sweetStore.updateSweet(name);
-			
-			break;
+//		case 3:
+//			System.out.println("Enter the name you want to update");
+//			sweetName = sc.next();
+//			name = sweetStore.getSweet(sweetName);
+//			sweetStore.updateSweet(name);
+//			
+//			break;
 		case 4:
 			userInterface.printAllSweet(sweetStore.getList());
 			break;
-		case 5:
-			System.out.println("Thank you"); 
+
+		case EXIT_VALUE:
+			System.out.println("Thank you");
 
 		}
 	}

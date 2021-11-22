@@ -1,17 +1,17 @@
 package com.sweetshop;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SweetStore {
 
-	private List<Sweet> sweetList = new ArrayList<>();
+	private Set<Sweet> sweetList = new HashSet<>();
 
 	public void add(Sweet sweet) {
 		sweetList.add(sweet);
 	}
 
-	public List getList() {
+	public Set getList() {
 		return sweetList;
 	}
 
@@ -29,14 +29,14 @@ public class SweetStore {
 		return null;
 
 	}
-
-	public Sweet updateSweet(Sweet name) {
-		for (Sweet sweet : sweetList) {
-			if (sweet.name.equals(name)) {
-				sweetList.set(sweetList.indexOf(name),name);
-				System.out.println("Updated"); 
-			}
-		}
-		return null;
-	}
+//
+//	public Sweet updateSweet(Sweet name) {
+//		for (Sweet sweet : sweetList) {
+//			if (sweet.name.equals(name)) {
+//				sweetList.set(sweetList.indexOf(name),name);
+//				System.out.println("Updated"); 
+//			}
+//		}
+//		return null;
+//	}
 }
