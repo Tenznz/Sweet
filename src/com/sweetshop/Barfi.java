@@ -2,11 +2,10 @@ package com.sweetshop;
 
 public class Barfi extends Sweet {
 
-	public Barfi(){
-		name="Barfi";
-		shape="Diamond";
-		color="White";
-		price=30;	
-		
+	public Barfi() {
+		name = "Barfi";
+		shape = shape.SQUARE;
+		color = color.WHITE;
+		price = 30;
 	}
 }

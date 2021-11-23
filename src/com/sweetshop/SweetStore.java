@@ -29,14 +29,5 @@ public class SweetStore {
 		return null;
 
 	}
-//
-//	public Sweet updateSweet(Sweet name) {
-//		for (Sweet sweet : sweetList) {
-//			if (sweet.name.equals(name)) {
-//				sweetList.set(sweetList.indexOf(name),name);
-//				System.out.println("Updated"); 
-//			}
-//		}
-//		return null;
-//	}
+
 }

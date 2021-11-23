@@ -9,7 +9,7 @@ public class UserInterface {
 //		for (int i = 0; i < sweetList.size(); i++) {
 //			System.out.println(sweetList.get(i));
 //		}
-		for (Sweet sweet: sweetList) {
+		for (Sweet sweet : sweetList) {
 			System.out.println(sweet);
 		}
 	}

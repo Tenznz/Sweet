@@ -1,11 +1,22 @@
 package com.sweetshop;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Sweet {
+	enum Shape {
+		TRIANGLE, SQUARE, ROUND
+	}
+
+	enum Color {
+		RED, GREEN, YELLOW, BLACK, BLUE, WHITE
+	};
+
 	String name;
-	String shape;
-	String color;
+	Color color;
+	Shape shape;
+	int price;
+	List<String> ingredients;
 
 	@Override
 	public int hashCode() {
@@ -53,12 +64,10 @@ public class Sweet {
 		return true;
 	}
 
-	int price;
-	List<String> ingredients;
-
 	public String toString() {
 
 		return getClass().getSimpleName() + "-> [Shape=" + shape + ",color=" + color + ",Price=" + price + "]";
 
 	}
+
 }

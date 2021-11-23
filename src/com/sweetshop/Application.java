@@ -39,7 +39,7 @@ public class Application {
 			Jalebi jalebi = new Jalebi();
 			Rasgulla rasgulla = new Rasgulla();
 			Rasgulla rasgulla2 = new Rasgulla();
-			
+
 			sweetStore.add(jalebi);
 			sweetStore.add(laddu);
 			sweetStore.add(barfi);
@@ -53,20 +53,62 @@ public class Application {
 			Sweet name = sweetStore.getSweet(sweetName);
 			sweetStore.removeSweet(name);
 			break;
-//		case 3:
-//			System.out.println("Enter the name you want to update");
-//			sweetName = sc.next();
-//			name = sweetStore.getSweet(sweetName);
-//			sweetStore.updateSweet(name);
-//			
-//			break;
+		case 3:
+			System.out.println("Enter a sweet name you want to update");
+			sweetName = sc.next();
+			Sweet sweet = sweetStore.getSweet(sweetName);
+			updateSweet(sweet);
+			break;
 		case 4:
 			userInterface.printAllSweet(sweetStore.getList());
 			break;
 
 		case EXIT_VALUE:
 			System.out.println("Thank you");
+		}
+	}
 
+	public void updateSweet(Sweet sweet) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter \n1.TRIANGLE \n2.SQUARE \n3.ROUND");
+		int shape = sc.nextInt();
+
+		switch (shape) {
+
+		case 1:
+			sweet.shape = Sweet.Shape.TRIANGLE;
+			break;
+
+		case 2:
+			sweet.shape = Sweet.Shape.SQUARE;
+			break;
+
+		case 3:
+			sweet.shape = Sweet.Shape.ROUND;
+			break;
+		}
+
+		System.out.println("Enter \n1.RED \n2.GREEN \n3.YELLOW\n4.WHITE"); 
+		int color = sc.nextInt();
+
+		switch (shape) {
+
+		case 1:
+			sweet.color = Sweet.Color.RED;
+			break;
+
+		case 2:
+			sweet.color = Sweet.Color.GREEN;
+			break;
+
+		case 3:
+			sweet.color = Sweet.Color.YELLOW;
+			break;
+			
+		case 4:
+			sweet.color = Sweet.Color.WHITE;
+			break;
 		}
 	}
 }
