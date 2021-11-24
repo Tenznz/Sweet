@@ -68,9 +68,49 @@ public class Application {
 		}
 	}
 
-	public void updateSweet(Sweet sweet) {
+	Scanner sc = new Scanner(System.in);
 
-		Scanner sc = new Scanner(System.in);
+	public void updateSweet(Sweet sweet) {
+		System.out.println("Enter \n1.Shape\n2.Color");
+		int option = sc.nextInt();
+		switch (option) {
+		case 1:
+			editShape(sweet);
+			break;
+		case 2:
+			editColor(sweet);
+			break;
+		default:
+			System.exit(0);
+		}
+	}
+
+	private void editColor(Sweet sweet) {
+		System.out.println("Enter \n1.RED \n2.GREEN \n3.YELLOW\n4.WHITE");
+		int color = sc.nextInt();
+
+		switch (color) {
+
+		case 1:
+			sweet.color = Sweet.Color.RED;
+			break;
+
+		case 2:
+			sweet.color = Sweet.Color.GREEN;
+			break;
+
+		case 3:
+			sweet.color = Sweet.Color.YELLOW;
+			break;
+
+		case 4:
+			sweet.color = Sweet.Color.WHITE;
+			break;
+		}
+		
+	}
+
+	private void editShape(Sweet sweet) {
 		System.out.println("Enter \n1.TRIANGLE \n2.SQUARE \n3.ROUND");
 		int shape = sc.nextInt();
 
@@ -86,28 +126,6 @@ public class Application {
 
 		case 3:
 			sweet.shape = Sweet.Shape.ROUND;
-			break;
-		}
-
-		System.out.println("Enter \n1.RED \n2.GREEN \n3.YELLOW\n4.WHITE"); 
-		int color = sc.nextInt();
-
-		switch (shape) {
-
-		case 1:
-			sweet.color = Sweet.Color.RED;
-			break;
-
-		case 2:
-			sweet.color = Sweet.Color.GREEN;
-			break;
-
-		case 3:
-			sweet.color = Sweet.Color.YELLOW;
-			break;
-			
-		case 4:
-			sweet.color = Sweet.Color.WHITE;
 			break;
 		}
 	}
