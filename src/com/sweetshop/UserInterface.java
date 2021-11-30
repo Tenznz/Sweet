@@ -4,6 +4,16 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class UserInterface {
+	private static UserInterface instance;
+	
+	private UserInterface() {	
+	}
+	public static UserInterface getInstance() {
+		if(instance==null) {
+			instance=new UserInterface();
+		}
+		return instance;	
+	}
 
 	public void printAllSweet(Set<Sweet> sweetList) {
 //		for (int i = 0; i < sweetList.size(); i++) {

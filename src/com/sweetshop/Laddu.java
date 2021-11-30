@@ -1,5 +1,7 @@
 package com.sweetshop;
 
+import java.util.ArrayList;
+
 public class Laddu extends Sweet {
 
 	public Laddu() {
@@ -7,5 +9,8 @@ public class Laddu extends Sweet {
 		shape = shape.ROUND;
 		color = color.YELLOW;
 		price = 10;
+		ingredients=new ArrayList(); 
+		ingredients.add("sugar");
+		ingredients.add("flour");
 	}
 }

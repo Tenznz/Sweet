@@ -1,28 +1,20 @@
 package com.sweetshop;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Application {
-	UserInterface userInterface = new UserInterface();
-	SweetStore sweetStore = new SweetStore();
+//	UserInterface userInterface = UserInterface.getInstance();
+//	SweetStore sweetStore =SweetStore.getInstance();
 	final static int EXIT_VALUE = 5;
 
 	public static void main(String[] args) {
+		UserInterface userInterface = UserInterface.getInstance();
 		System.out.println("Welcome to Sweet Shop.");
-		/*
-		 * Laddu laddu = new Laddu(); laddu.price=40; Barfi barfi = new Barfi(); Jalebi
-		 * jalebi = new Jalebi(); Rasgulla rasgulla = new Rasgulla();
-		 * 
-		 * SweetStore sweetstore = new SweetStore(); sweetstore.add(jalebi);
-		 * sweetstore.add(laddu); sweetstore.add(barfi); sweetstore.add(rasgulla);
-		 * 
-		 * UserInterface userInterface = new UserInterface();
-		 * userInterface.PrintAllSweet(sweetstore.getList());
-		 */
 		int input = 0;
 		Application app = new Application();
 		while (input != app.EXIT_VALUE) {
-			input = app.userInterface.showUserMenu();
+			input = userInterface.showUserMenu();
 			app.handleUserSelection(input);
 		}
 	}
@@ -30,7 +22,7 @@ public class Application {
 	private void handleUserSelection(int input) {
 		Scanner sc = new Scanner(System.in);
 		Application app = new Application();
-
+		SweetStore sweetStore = SweetStore.getInstance();// Singleton concept
 		switch (input) {
 		case 1:
 			Laddu laddu = new Laddu();
@@ -48,18 +40,19 @@ public class Application {
 			break;
 		case 2:
 			System.out.println("Enter the name you want to delete");
-			String sweetName = sc.next();
+			String sweetName = sc.nextLine();
 
 			Sweet name = sweetStore.getSweet(sweetName);
 			sweetStore.removeSweet(name);
 			break;
 		case 3:
 			System.out.println("Enter a sweet name you want to update");
-			sweetName = sc.next();
+			sweetName = sc.nextLine();
 			Sweet sweet = sweetStore.getSweet(sweetName);
 			updateSweet(sweet);
 			break;
 		case 4:
+			UserInterface userInterface = UserInterface.getInstance();
 			userInterface.printAllSweet(sweetStore.getList());
 			break;
 
@@ -71,21 +64,53 @@ public class Application {
 	Scanner sc = new Scanner(System.in);
 
 	public void updateSweet(Sweet sweet) {
-		System.out.println("Enter \n1.Shape\n2.Color");
+		System.out.println("Enter \n1.Shape\n2.Color\n3.Name\n4.Price\n5.Ingredient");
 		int option = sc.nextInt();
 		switch (option) {
 		case 1:
-			editShape(sweet);
+			updateShape(sweet);
 			break;
 		case 2:
-			editColor(sweet);
+			updateColor(sweet);
+			break;
+		case 3:
+			updateName(sweet);
+			break;
+		case 4:
+			updatePrice(sweet);
+			break;
+		case 5:
+			updateIngredient(sweet);
 			break;
 		default:
 			System.exit(0);
 		}
 	}
 
-	private void editColor(Sweet sweet) {
+	private void updateIngredient(Sweet sweet) {
+		System.out.println("Enter the new Ingredients sweet\",\"");
+		String newIngredients = sc.next();
+		System.out.println(newIngredients);
+//		sweet.ingredients.clear();
+		String[] ingredientArr = newIngredients.split(",");
+		
+	
+		sweet.ingredients = Arrays.asList(ingredientArr);
+	}
+
+	private void updatePrice(Sweet sweet) {
+		System.out.println("Enter Price");
+		int newPrice = sc.nextInt();
+		sweet.price = newPrice;
+	}
+
+	private void updateName(Sweet sweet) {
+		System.out.println("Enter Name");
+		String newName = sc.nextLine();
+		sweet.name = newName;
+	}
+
+	private void updateColor(Sweet sweet) {
 		System.out.println("Enter \n1.RED \n2.GREEN \n3.YELLOW\n4.WHITE");
 		int color = sc.nextInt();
 
@@ -107,10 +132,10 @@ public class Application {
 			sweet.color = Sweet.Color.WHITE;
 			break;
 		}
-		
+
 	}
 
-	private void editShape(Sweet sweet) {
+	private void updateShape(Sweet sweet) {
 		System.out.println("Enter \n1.TRIANGLE \n2.SQUARE \n3.ROUND");
 		int shape = sc.nextInt();
 
