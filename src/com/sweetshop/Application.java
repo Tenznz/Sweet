@@ -1,6 +1,8 @@
 package com.sweetshop;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Application {
@@ -44,14 +46,59 @@ public class Application {
 			userInterface.printAllSweet(sweetStore.getList());
 			break;
 		case 5:
-			UserInterface userInterface1 = UserInterface.getInstance();
-			userInterface1.printAllYellowSweet(sweetStore.getList());
+			getOrder();
+//			UserInterface userInterface1 = UserInterface.getInstance();
+//			userInterface1.printAllYellowSweet(sweetStore.getList());
 			break;
 
 		case EXIT_VALUE:
 			System.out.println("Thank you");
 		}
 	}
+
+	private void getOrder() {
+		SweetStore sweetStore = SweetStore.getInstance();
+		Order order = new Order();
+		System.out.println("Order Section");
+		System.out.println("Enter Your Name");
+		String personName = sc.next();
+		order.setCustomerName(personName);
+		System.out.println("Enter Your Phone Number");
+		long phoneNumber = sc.nextLong();
+		order.setPhoneNumber(phoneNumber);
+		String sweetName = "";
+		double price = 0;
+		Map<Integer, Sweet> orderMap = new HashMap<>();
+		do {
+			System.out.println("Enter Sweet name or 'quit'");
+			sweetName = sc.next();
+			if (sweetName.toLowerCase().equals("quit")) {
+				break;
+			}
+			Sweet sweet = sweetStore.getSweet(sweetName);
+			System.out.println("Enter Quantity");
+			int quantity = sc.nextInt();
+			price = price + sweet.price * quantity;
+
+			orderMap.put(quantity, sweet);
+			order.setSweetMap(orderMap);
+
+		} while (sweetName.toLowerCase() != "quit");
+		order.setTotalPrice(price);
+		System.out.println(order);
+		order.getSweetMap().entrySet().stream().forEach(sweet -> System.out
+				.println("Sweet Name - " + sweet.getValue().name + "\tQuantity - " + sweet.getKey()));
+
+	}
+
+//	public void totalPrice() {
+//		Order order = new Order();
+//		double total = 0;
+//		for (Map.Entry<Integer, Sweet> entry : order.getSweetMap().entrySet()) {
+//			total =total+ (entry.getValue().price * entry.getKey());
+//		}
+//		System.out.println(total);
+//	}
 
 	private void addSweet() {
 		SweetStore store = SweetStore.getInstance();
@@ -96,8 +143,6 @@ public class Application {
 	private void setIngredient(Sweet sweet) {
 		System.out.println("Enter the new Ingredients sweet\",\"");
 		String newIngredients = sc.next();
-		System.out.println(newIngredients);
-//		sweet.ingredients.clear();
 		String[] ingredientArr = newIngredients.split(",");
 
 		sweet.ingredients = Arrays.asList(ingredientArr);

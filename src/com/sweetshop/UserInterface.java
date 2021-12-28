@@ -30,7 +30,7 @@ public class UserInterface {
 	}
 
 	public int showUserMenu() {
-		System.out.println("Enter \n1.Add sweet\n2.Remove sweet" + "\n3.Update sweet \n4.Print sweet\n5.print yellow\n"
+		System.out.println("Enter \n1.Add sweet\n2.Remove sweet" + "\n3.Update sweet \n4.Print sweet\n5.Get Order\n"
 				+ Application.EXIT_VALUE + ".Exit");
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
