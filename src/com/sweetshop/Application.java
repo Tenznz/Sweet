@@ -22,6 +22,7 @@ public class Application {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void handleUserSelection(int input) {
 		Scanner sc = new Scanner(System.in);
 		SweetStore sweetStore = SweetStore.getInstance();// Singleton concept
@@ -67,8 +68,8 @@ public class Application {
 		long phoneNumber = sc.nextLong();
 		order.setPhoneNumber(phoneNumber);
 		String sweetName = "";
-		double price = 0;
-		Map<Integer, Sweet> orderMap = new HashMap<>();
+//		double price = 0;
+		Map<Sweet, Integer> orderMap = new HashMap<>();
 		do {
 			System.out.println("Enter Sweet name or 'quit'");
 			sweetName = sc.next();
@@ -78,17 +79,17 @@ public class Application {
 			Sweet sweet = sweetStore.getSweet(sweetName);
 			System.out.println("Enter Quantity");
 			int quantity = sc.nextInt();
-			price = price + sweet.price * quantity;
+//			price = price + sweet.price * quantity;
 
-			orderMap.put(quantity, sweet);
+			orderMap.put(sweet,quantity);
 			order.setSweetMap(orderMap);
 
 		} while (sweetName.toLowerCase() != "quit");
-		order.setTotalPrice(price);
+//		order.setTotalPrice(price);
 		System.out.println(order);
-		order.getSweetMap().entrySet().stream().forEach(sweet -> System.out
-				.println("Sweet Name - " + sweet.getValue().name + "\tQuantity - " + sweet.getKey()));
-
+		order.getSweetMap().entrySet().forEach(sweet -> System.out
+				.println("Sweet Name - " + sweet.getValue() + "\tQuantity - " + sweet.getKey().name));
+		System.out.println("Amount to pay: " + order.getTotalPrice());
 	}
 
 //	public void totalPrice() {

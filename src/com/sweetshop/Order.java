@@ -1,10 +1,11 @@
 package com.sweetshop;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Order {
 	private int id;
-	private Map<Integer, Sweet> sweetMap;
+	private Map<Sweet,Integer> sweetMap;
 	private String customerName;
 	private long phoneNumber;
 	private double totalPrice;
@@ -27,7 +28,7 @@ public class Order {
 		return id;
 	}
 
-	public Map<Integer, Sweet> getSweetMap() {
+	public Map< Sweet,Integer> getSweetMap() {
 		return sweetMap;
 	}
 
@@ -36,6 +37,10 @@ public class Order {
 	}
 
 	public double getTotalPrice() {
+		totalPrice=0;
+		for (Entry<Sweet, Integer> map:sweetMap.entrySet()) {
+		totalPrice=totalPrice +map.getKey().price*map.getValue();
+		}
 		return totalPrice;
 	}
 
@@ -43,7 +48,7 @@ public class Order {
 		this.id = id;
 	}
 
-	public void setSweetMap(Map<Integer, Sweet> sweetMap) {
+	public void setSweetMap(Map<Sweet, Integer> sweetMap) {
 		this.sweetMap = sweetMap;
 	}
 
